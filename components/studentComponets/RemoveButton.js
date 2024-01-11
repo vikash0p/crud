@@ -7,7 +7,7 @@ const RemoveButton = ({ id }) => {
 
     const deleteHandler = async () => {
 
-       const res=   await fetch(`http://localhost:3000/api/student?id=${id}`, {
+        const res = await fetch(`https://crud-lac-nine.vercel.app?id=${id}`, {
             method: "DELETE"
        });
         

@@ -3,7 +3,7 @@ import React from 'react'
 import { Suspense } from 'react'
 const Student = async () => {
 
-    const res = await fetch('http://localhost:3000/api/student', { cache: 'no-store' });
+    const res = await fetch('https://crud-lac-nine.vercel.app', { cache: 'no-store' });
     const student = await res.json();
     // console.log(student);
 

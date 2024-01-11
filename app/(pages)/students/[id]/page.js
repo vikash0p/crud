@@ -4,7 +4,7 @@ import React from 'react'
 const getTopicById = async (id) => {
     try {
 
-        const res = await fetch(`http://localhost:3000/api/student/${id}`, {
+        const res = await fetch(`https://crud-lac-nine.vercel.app/${id}`, {
             cache: 'no-store'
         })
 
