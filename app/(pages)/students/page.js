@@ -5,7 +5,7 @@ const Student = async () => {
 
     const res = await fetch('http://localhost:3000/api/student', { cache: 'no-store' });
     const student = await res.json();
-    console.log(student);
+    // console.log(student);
 
     if (!res.ok) {
         throw new Error("Failed to fetch Student data. !")
