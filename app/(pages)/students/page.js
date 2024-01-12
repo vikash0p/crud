@@ -2,10 +2,12 @@ import Card from '@/components/studentComponets/Card'
 import React from 'react'
 import { Suspense } from 'react'
 
-URL1 =` http://localhost:3000/api/student`
-URL2 = `https://crud-lac-nine.vercel.app/api/student`
+
 const GetData = async () => {
     try {
+        const=URL1 = 'http://localhost:3000/api/student'
+        const URL2 = `https://crud-lac-nine.vercel.app/api/student`
+
         const res = await fetch(URL1 || URL2 , { cache: 'no-store' });
 
 
