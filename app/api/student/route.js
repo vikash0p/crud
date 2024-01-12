@@ -39,7 +39,8 @@ export async function GET(request) {
         await mongodbConnection();
         const student = await Student.find();
          
-        return NextResponse.json(student);
+        return NextResponse.json({ student  })
+
     } catch (error) {
         console.log(error);
         return NextResponse.json({

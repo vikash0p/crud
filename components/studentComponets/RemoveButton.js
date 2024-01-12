@@ -6,8 +6,11 @@ const RemoveButton = ({ id }) => {
     const router = useRouter();
 
     const deleteHandler = async () => {
+        
+        const url1 = `https://crud-lac-nine.vercel.app/api/student?id=${id}`
+        const url2 =`http://localhost:3000/api/student?id=${id}`
 
-        const res = await fetch(`https://crud-lac-nine.vercel.app?id=${id}`, {
+       const res=   await fetch(url1 || url2 , {
             method: "DELETE"
        });
         
