@@ -38,10 +38,8 @@ export async function GET(request) {
     try {
         
         await mongodbConnection();
-        const student = await Student.find();
-
-
-        return NextResponse.json({student})
+    
+        return NextResponse.json(await Student.find());
 
     } catch (error) {
         console.log(error);
