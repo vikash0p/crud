@@ -28,7 +28,7 @@ const Home = () => {
     }
     try {
         
-      const res = await fetch("/api/student", {
+      const res = await fetch("/api/student" || 'https://crud-vikash0p.vercel.app/api/student' , {
         method: "POST",
         headers: {
           'Content-Type':'application/json',

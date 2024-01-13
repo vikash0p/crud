@@ -6,7 +6,7 @@ const DeleteStudentData = ({ id }) => {
     const router = useRouter();
 
     const DeleteStudentDataHandler = async () => {
-        const res = await fetch(`http://localhost:3000/api/student?id=${id}`, {
+        const res = await fetch(`http://localhost:3000/api/student?id=${id}` || `https://crud-vikash0p.vercel.app/api/student?id=${id}` , {
             method:'DELETE',
         });
 
