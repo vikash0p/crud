@@ -18,12 +18,11 @@ export async function PUT(request, { params }) {
 
         await mongodbConnection();
 
-        const newStudent = await Student.findByIdAndUpdate(id, { name, email, gender, major, admissionYear })
+        await Student.findByIdAndUpdate(id, { name, email, gender, major, admissionYear })
 
         return NextResponse.json({
             message: 'Student data updated successfully !',
-            success: true,
-            data: newStudent,
+            success: true,  
         }, {
             status: 200
         })
@@ -46,13 +45,8 @@ export async function GET(request, { params }) {
     try {
         await mongodbConnection();
         const singleStudentData = await Student.findOne({ _id: id });
-        return NextResponse.json({
-            message: 'Student data updated successfully !',
-            success: true,
-            data: singleStudentData,
-        }, {
-            status: 200
-        })
+        console.log(singleStudentData);
+        return NextResponse.json({ singleStudentData }, { status:200});
 
     } catch (error) {
         console.log(error)

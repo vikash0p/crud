@@ -131,7 +131,7 @@ const Home = () => {
             required
           />
         </div>
-        <button className="w-full bg-blue-500 text-white p-2 rounded-md" type="submit">
+        <button className="w-full bg-green-500 text-white p-2 rounded-md" type="submit">
           Submit
         </button>
       </form>

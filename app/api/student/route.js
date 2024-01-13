@@ -3,19 +3,19 @@ import mongodbConnection from "@/mongoose/mongodbConnection";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
-    console.log("This is all about the requset data",request)
+    console.log("This is all about the requset data", request)
     try {
         const { name, email, gender, major, admissionYear } = await request.json()
         await mongodbConnection();
-    
-        const student = await Student.create({ name, email,  gender, major, admissionYear});
-        
+
+        const student = await Student.create({ name, email, gender, major, admissionYear });
+
         return NextResponse.json({
             message: 'student post successfully !',
             success: true,
-            data:student,
+            data: student,
         }, {
-            status:200
+            status: 200
         })
 
 
@@ -34,12 +34,20 @@ export async function POST(request) {
 
 }
 
-export async function GET(request) { 
+export async function GET(request) {
     try {
+        
         await mongodbConnection();
         const student = await Student.find();
-         
-        return NextResponse.json({ student  })
+
+
+        return NextResponse.json({
+            message: 'student post successfully !',
+            success: true,
+            data: student,
+        }, {
+            status: 200
+        })
 
     } catch (error) {
         console.log(error);
@@ -76,5 +84,5 @@ export async function DELETE(request) {
             status: 500
         })
     }
-  
+
 }

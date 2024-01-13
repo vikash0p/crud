@@ -3,8 +3,7 @@ import { useRouter } from 'next/navigation';
 // pages/index.js
 import React, { useState } from 'react';
 
-const StudentForm = ({ id, name, email, gender, major, admissionYear }) => {
-    
+const UpdateStudentData = ({id,name,email,gender,major,admissionYear}) => {
     const [studentData, setStudentData] = useState({
         newName: name,
         newEmail: email,
@@ -14,7 +13,6 @@ const StudentForm = ({ id, name, email, gender, major, admissionYear }) => {
     });
 
     const router = useRouter();
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setStudentData((prevData) => ({
@@ -25,18 +23,15 @@ const StudentForm = ({ id, name, email, gender, major, admissionYear }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!studentData.newName  || !studentData.newGender || !studentData.newMajor || !studentData.newAdmissionYear) {
+        if (!studentData.newName || !studentData.newEmail || !studentData.newGender || !studentData.newMajor || !studentData.newAdmissionYear) {
             alert("All field are mandatery !")
         }
         try {
 
-            const url1 = `https://crud-lac-nine.vercel.app/api/student?id=${id}`
-            const url2 = `http://localhost:3000/api/student?id=${id}`
-
-            const res = await fetch(url1 || url2, {
+            const res = await fetch(`http://localhost:3000/api/student/${id}`, {
                 method: "PUT",
                 headers: {
-                    'Content-type': 'application/json',
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
                     newName: studentData.newName,
@@ -50,8 +45,12 @@ const StudentForm = ({ id, name, email, gender, major, admissionYear }) => {
             if (!res.ok) {
                 throw new Error("failed to crate student database.")
             }
-            router.refresh();
-            router.push('/students')
+            else {
+                router.refresh();
+                router.push('/students')
+                alert('you are successfully updated !')
+            }
+          
 
         } catch (error) {
             console.log(error)
@@ -63,7 +62,7 @@ const StudentForm = ({ id, name, email, gender, major, admissionYear }) => {
             <form className="max-w-xl w-full p-4 bg-white rounded shadow-md" onSubmit={handleSubmit}>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-                        Name
+                        Update Name
                     </label>
                     <input
                         className="w-full p-2 border rounded-md"
@@ -76,23 +75,23 @@ const StudentForm = ({ id, name, email, gender, major, admissionYear }) => {
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-                        Email
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="newEmail">
+                       Update Email
                     </label>
                     <input
                         className="w-full p-2 border rounded-md"
-                        type="email"
+                        type="newEmail"
                         id="newEmail"
                         name="newEmail"
                         value={studentData.newEmail}
                         onChange={handleChange}
-                        disabled
+                        required
                     />
                 </div>
 
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="gender">
-                        Gender
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="newGender">
+                        Update Gender
                     </label>
                     <select
                         className="w-full p-2 border rounded-md"
@@ -102,15 +101,15 @@ const StudentForm = ({ id, name, email, gender, major, admissionYear }) => {
                         onChange={handleChange}
                         required
                     >
-                        <option value="" disabled>Select Gender</option>
+                        <option value="" disabled>Select newGender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                         <option value="other">Other</option>
                     </select>
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="major">
-                        Major
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="newMajor">
+                       Update Major
                     </label>
                     <input
                         className="w-full p-2 border rounded-md"
@@ -123,8 +122,8 @@ const StudentForm = ({ id, name, email, gender, major, admissionYear }) => {
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="admissionYear">
-                        Admission Year
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="newAdmissionYear">
+                        New Admission Year
                     </label>
                     <input
                         className="w-full p-2 border rounded-md"
@@ -136,7 +135,7 @@ const StudentForm = ({ id, name, email, gender, major, admissionYear }) => {
                         required
                     />
                 </div>
-                <button className="w-full bg-blue-500 text-white p-2 rounded-md" type="submit">
+                <button className="w-full bg-green-500 text-white p-2 rounded-md" type="submit">
                     Submit
                 </button>
             </form>
@@ -144,4 +143,4 @@ const StudentForm = ({ id, name, email, gender, major, admissionYear }) => {
     );
 };
 
-export default StudentForm;
+export default UpdateStudentData;
