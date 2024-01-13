@@ -11,7 +11,7 @@ const Students = async () => {
   return (
     <div className='container mx-auto my-8 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 '>
       {
-        student?.student?.map((value, index, array) => {
+        student.student.map((value, index, array) => {
           return (
             <div key={index} className=''>
               <div className='flex flex-col gap-2 bg-slate-600 rounded-lg py-4 text-center text-white'>
