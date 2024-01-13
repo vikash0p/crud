@@ -41,13 +41,7 @@ export async function GET(request) {
         const student = await Student.find();
 
 
-        return NextResponse.json({
-            message: 'student post successfully !',
-            success: true,
-            data: student,
-        }, {
-            status: 200
-        })
+        return NextResponse.json({student})
 
     } catch (error) {
         console.log(error);
