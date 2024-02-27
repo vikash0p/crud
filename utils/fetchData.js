@@ -3,7 +3,7 @@ export const fetchStudentdata = async () => {
 
     try {
 
-        const res = await fetch('http://localhost:3000/api/student' || 'https://crud-vikash0p.vercel.app/api/student' , {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/student`  , {
             cache: 'no-cache'
         });
 
@@ -24,7 +24,7 @@ export const getStudentById = async (id) => {
 
     try {
 
-        const res = await fetch(`http://localhost:3000/api/student/${id}` ||`https://crud-vikash0p.vercel.app/api/student/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/student/${id}` , {
             cache: 'no-store'
         });
 

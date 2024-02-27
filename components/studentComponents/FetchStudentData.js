@@ -8,7 +8,7 @@ import React from 'react'
 
 
 const Studentdata = async () => {
-    const res = await axios.get( 'http://localhost:3000/api/student' || 'https://crud-vikash0p.vercel.app/api/student' );
+    const res = await axios.get( `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/student` );
     return res.data;
 }
 
@@ -32,13 +32,16 @@ const FetchStudentData = () => {
             {
               
                 isPending ? (
-                    <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 my-5 '>
+                    <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 my-5 px-3 '>
                      
                         {
                             loading.map((value, index, array) => {
                                 return (
-                                    <div key={index} className="flex justify-center place-items-center w-[326px] h-[128px] bg-emerald-600  rounded-xl text-white text-2xl">
-                                        {value.name}
+                                    <div role="status" className="max-w-sm animate-pulse bg-black flex flex-col gap-2 py-3 rounded-xl" key={index}>
+                                        <div className="h-3  rounded-full bg-gray-700  w-full ps-4 mb-4"></div>
+                                        <div className="h-3  rounded-full bg-gray-700  w-full ps-4 mb-4"></div>
+                                        <div className="h-3  rounded-full bg-gray-700  w-full ps-4 mb-4"></div>
+                                        <span className="sr-only">{value.name} </span>
                                     </div>
                                 )
                             })
@@ -48,7 +51,7 @@ const FetchStudentData = () => {
                     </div>
                 ) :
                     (
-                        <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 my-5' >
+                        <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 my-5 px-3' >
                             {
 
                                 data?.map((value, index, array) => {
